@@ -16,27 +16,29 @@ function startVideo() {
 }
 
 function initFaceRecog(player) {
+
     video.addEventListener('play', () => {
-    //   const canvas = faceapi.createCanvasFromMedia(video)
-    //   document.body.append(canvas)
-      const displaySize = { width: video.width, height: video.height }
-    //   const displaySize = { width: 640, height: 480 }
-    //   faceapi.matchDimensions(canvas, displaySize)
-      setInterval(async () => {
-        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+        const canvas = faceapi.createCanvasFromMedia(video)
+        document.body.append(canvas)
+        const displaySize = { width: video.width, height: video.height }
+        faceapi.matchDimensions(canvas, displaySize)
+        setInterval(async () => {
+        const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
         const resizedDetections = faceapi.resizeResults(detections, displaySize)
     
-        if(resizedDetections[0] !== undefined) {
-            // resizedDetections[0].landmarks._positions = resizedDetections[0].landmarks._positions.slice(33, 34)
+        if(resizedDetections !== undefined) {
+            player.setY(mapCoords(resizedDetections.landmarks._positions[33]._y))
+            // player.setY(mapCoords(resizedDetections.landmarks._positions[33]._y))
+            resizedDetections.landmarks._positions = resizedDetections.landmarks._positions.slice(30, 37)
+            // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
 
-            player.setY(mapCoords(resizedDetections[0].landmarks._positions[33]._y))
         }
-      }, 200)
+      }, 20)
     })
 }
 
 function mapCoords(y) {
-    const h = 500, a = 220, b = 280;
+    const h = 500, a = 300, b = 400;
     const x = (h * (y - a)) / (b - a);
 
     return x;

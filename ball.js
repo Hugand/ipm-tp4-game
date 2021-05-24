@@ -2,7 +2,7 @@
 class Ball {
     x = 300;
     y = 250;
-    speed = 4;
+    speed = 8;
     l = 20
     // xDir
     // yDir
