@@ -4,41 +4,30 @@ let ball = new Ball()
 
 let points = 0;
 let pointsBot = 0;
+let mouse = new Mouse();
+let stateMachine = new StateMachine()
+
+let replayIcon;
+let crownIcon;
 
 function setup() {
     createCanvas(600, 500);
-    initFaceRecog(player)
+    initFaceRecog(mouse)
     points = 0;
     frameRate(60)
+
+    crownIcon = loadImage('assets/crown.png');
+    replayIcon = loadImage('assets/replay.png');
+
 }
 
 function draw() {
     background(42);
 
-    textSize(44);
-    text(points, 200, 100)
-    text(pointsBot, 400, 100)
+    stateMachine.displayUI()
 
-    ball.move();
-    bot.activateMovement()
-    bot.move(ball)
+    mouse.paint();
 
-    player.paint()
-    bot.paint()
-    ball.paint();
-
-    player.collideWithBall(ball)
-    bot.collideWithBall(ball)
-
-    if(ball.hitLeftWall()) {
-        resetObjects()
-        pointsBot++;
-    }
-
-    if(ball.hitRightWall()) {
-        resetObjects()
-        points++;
-    }
 
 }
 
@@ -46,6 +35,12 @@ function resetObjects() {
     player.reset(20, 250)
     bot = new Bot(600-40, 250);
     ball = new Ball()
+}
+
+function resetGame() {
+    points = 0
+    pointsBot = 0
+    resetObjects()
 }
 
 
