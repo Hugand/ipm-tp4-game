@@ -7,6 +7,7 @@ let pointsBot = 0;
 
 function setup() {
     createCanvas(600, 500);
+    initFaceRecog(player)
     points = 0;
 }
 
@@ -41,11 +42,11 @@ function draw() {
 }
 
 function resetObjects() {
-    player = new Player(20, 250)
+    player.reset(20, 250)
     bot = new Bot(600-40, 250);
     ball = new Ball()
 }
 
-function mouseMoved() {
-    player.setY(mouseY)
-  }
+// function mouseMoved() {
+//     player.setY(mouseY)
+//   }

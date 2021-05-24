@@ -2,9 +2,9 @@
 class Player {
     h = 100;
     w = 10;
+
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        this.reset(x, y)
     }
 
     setY = (y) => {
@@ -25,5 +25,10 @@ class Player {
             }
 
         return false
+    }
+
+    reset = (x, y) => {
+        this.x = x;
+        this.y = y;
     }
 }
