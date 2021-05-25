@@ -28,10 +28,9 @@ class Mouse {
     }
 
     paint() {
-        // fill(200, 30, 30)
         stroke(255)
         strokeWeight(1)
-        fill(250, 20, 20)
+        fill(114, 213, 255)
         ellipse(this.x, this.y, this.l)
         strokeWeight(0)
     }
