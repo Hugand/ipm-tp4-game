@@ -10,6 +10,7 @@ let stateMachine = new StateMachine()
 let replayIcon;
 let crownIcon;
 let homeIcon;
+let playIcon;
 
 function setup() {
     createCanvas(600, 500);
@@ -20,6 +21,7 @@ function setup() {
     crownIcon = loadImage('assets/crown.png');
     replayIcon = loadImage('assets/replay.png');
     homeIcon = loadImage('assets/home.png');
+    playIcon = loadImage('assets/play.png');
 
 }
 

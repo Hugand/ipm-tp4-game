@@ -34,10 +34,12 @@ class StateMachine {
         textSize(50)
         text('PONG!', 220, 140);
 
-        fill(255)
-        rect(100, 200, 400, 170)
-        fill(12)
-        text('Start!', 230, 300);
+        stroke(255)
+        strokeWeight(4)
+        fill(42)
+        rect(233, 240, 136, 136)
+        image(playIcon, 250, 290 - 34, 100, 100)
+        strokeWeight(0)
 
         if(this.isMouseClickingStartBtn(mouse)) {
             mouse.setIsHoldingClick(true)
@@ -191,7 +193,7 @@ class StateMachine {
     }
 
     isMouseClickingStartBtn(mouse) {
-        return mouse.getX() >= 100 && mouse.getX() <= 500 && mouse.getY() >= 200 && mouse.getY() <= 370;
+        return mouse.getX() >= 233 && mouse.getX() <= 369 && mouse.getY() >= 240 && mouse.getY() <= 376;
     }
 
     isMouseClickingReplayBtn(mouse) {
