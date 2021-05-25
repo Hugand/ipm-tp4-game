@@ -2,7 +2,7 @@
 class Ball {
     x = 300;
     y = 250;
-    speed = 12;
+    speed = 8;
     l = 20
     // xDir
     // yDir
@@ -31,7 +31,7 @@ class Ball {
     }
 
     hitRightWall = () => {
-        return this.x >= 600-this.getR()
+        return this.x >= 700-this.getR()
     }
 
     hitLeftWall = () => {
@@ -57,10 +57,10 @@ class Ball {
     }
 
     xDirToRight = () => {
-        this.xDir = this.speed + Math.random() * 5;
+        this.xDir = this.speed + Math.random() * 3;
     }
 
     xDirToLeft = () => {
-        this.xDir = -this.speed - Math.random() * 3;
+        this.xDir = -this.speed - Math.random() * 2;
     }
 }

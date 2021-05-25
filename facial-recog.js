@@ -5,7 +5,7 @@ function startVideo(stateMachine) {
     { video: {} },
     stream => {
         video.srcObject = stream
-        stateMachine.finishLoadingApi()
+        // stateMachine.finishLoadingApi()
     },
     err => console.error(err)
   )
@@ -27,7 +27,7 @@ function initFaceRecog(mouse, stateMachine) {
         const displaySize = { width: video.width, height: video.height }
         // faceapi.matchDimensions(canvas, displaySize)
         setInterval(async () => {
-            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ scoreThreshold: 0.2, inputSize: 160})).withFaceLandmarks()
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
             // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
             if(resizedDetections[0] !== undefined) {

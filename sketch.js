@@ -1,5 +1,5 @@
 let player = new Player(20, 250)
-let bot = new Bot(600-40, 250);
+let bot = new Bot(700-40, 250);
 let ball = new Ball()
 
 let points = 0;
@@ -13,7 +13,7 @@ let homeIcon;
 let playIcon;
 
 function setup() {
-    createCanvas(600, 500);
+    createCanvas(700, 500);
     initFaceRecog(mouse, stateMachine)
     points = 0;
     frameRate(60)
@@ -38,7 +38,7 @@ function draw() {
 
 function resetObjects() {
     player.reset(20, 250)
-    bot = new Bot(600-40, 250);
+    bot = new Bot(700-40, 250);
     ball = new Ball()
 }
 

@@ -11,7 +11,7 @@ const playerType = {
 }
 
 class StateMachine {
-    currentState = states.LOADING
+    currentState = states.GAME
     buttonHold = 0;
 
     displayUI() {
@@ -40,13 +40,13 @@ class StateMachine {
     uiMenu() {
         fill(255)
         textSize(50)
-        text('PONG!', 220, 140);
+        text('PONG!', 270, 140);
 
         stroke(255)
         strokeWeight(4)
         fill(42)
-        rect(233, 240, 136, 136)
-        image(playIcon, 250, 290 - 34, 100, 100)
+        rect(283, 240, 136, 136)
+        image(playIcon, 300, 290 - 34, 100, 100)
         strokeWeight(0)
 
         if(this.isMouseClickingStartBtn(mouse) && mouse.getButtonHoldCount() == 0) {
@@ -75,9 +75,15 @@ class StateMachine {
     }
 
     uiGame() {
+        textAlign("center")
         textSize(44);
         text(points, 200, 100)
-        text(pointsBot, 400, 100)
+        text(pointsBot, 480, 100)
+
+        textSize(18);
+        text("Jogador", 200, 130)
+        text("Bot", 480, 130)
+        textAlign("left")
 
         ball.move();
         bot.activateMovement()
@@ -109,10 +115,14 @@ class StateMachine {
         strokeWeight(0)
         fill(255)
         textSize(48)
-        text('Game Over', 170, 90)
+        textAlign('center')
+        text('Game Over', 350, 90)
+        textAlign('left')
 
         let winningUser = '';
         let crownYPos;
+
+        points = 10
 
         if(pointsBot == 10) {
             crownYPos = 180 - 24
@@ -121,20 +131,20 @@ class StateMachine {
         }
 
         textSize(28)
-        text(winningUser, 220, 170)
+        text(winningUser, 270, 170)
 
-        text('Jogador: ' + points, 230, 140)
-        text('Bot: ' + pointsBot, 230, 180)
+        text('Jogador: ' + points, 280, 140)
+        text('Bot: ' + pointsBot, 280, 180)
 
-        image(crownIcon, 180, crownYPos, 34, 28)
+        image(crownIcon, 230, crownYPos, 34, 28)
 
         stroke(255)
         strokeWeight(4)
         fill(42)
-        rect(333, 240, 136, 136)
-        image(replayIcon, 350, 290 - 34, 100, 100)
-        rect(133, 240, 136, 136)
-        image(homeIcon, 150, 290 - 34, 100, 100)
+        rect(383, 240, 136, 136)
+        image(replayIcon, 400, 290 - 34, 100, 100)
+        rect(183, 240, 136, 136)
+        image(homeIcon, 200, 290 - 34, 100, 100)
         strokeWeight(0)
 
         // Replay click listener
@@ -204,15 +214,15 @@ class StateMachine {
     }
 
     isMouseClickingStartBtn(mouse) {
-        return mouse.getX() >= 233 && mouse.getX() <= 369 && mouse.getY() >= 240 && mouse.getY() <= 376;
+        return mouse.getX() >= 283 && mouse.getX() <= 419 && mouse.getY() >= 240 && mouse.getY() <= 376;
     }
 
     isMouseClickingReplayBtn(mouse) {
-        return mouse.getX() >= 333 && mouse.getX() <= 469 && mouse.getY() >= 240 && mouse.getY() <= 376;
+        return mouse.getX() >= 383 && mouse.getX() <= 419 && mouse.getY() >= 240 && mouse.getY() <= 376;
     }
 
     isMouseClickingHomeBtn(mouse) {
-        return mouse.getX() >= 133 && mouse.getX() <= 269 && mouse.getY() >= 240 && mouse.getY() <= 376;
+        return mouse.getX() >= 183 && mouse.getX() <= 319 && mouse.getY() >= 240 && mouse.getY() <= 376;
     }
 
     handleWin() {
