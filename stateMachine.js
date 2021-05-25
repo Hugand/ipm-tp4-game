@@ -9,10 +9,8 @@ const playerType = {
     PLAYER: 'player'
 }
 
-
-
 class StateMachine {
-    currentState = states.MENU
+    currentState = states.GAMEOVER
     buttonHold = 0;
 
     displayUI() {
@@ -41,29 +39,29 @@ class StateMachine {
         image(playIcon, 250, 290 - 34, 100, 100)
         strokeWeight(0)
 
-        if(this.isMouseClickingStartBtn(mouse)) {
+        if(this.isMouseClickingStartBtn(mouse) && mouse.getButtonHoldCount() == 0) {
             mouse.setIsHoldingClick(true)
-            let nHoldChecks = 0;
+            mouse.incrementButtonHoldCount()
 
             let interval = setInterval(() => {
                 if(this.isMouseClickingStartBtn(mouse)) {
                     mouse.setIsHoldingClick(true)
                     
-                    if(nHoldChecks === 15) {
+                    if(mouse.getButtonHoldCount() === 15) {
                         clearInterval(interval)
                         mouse.setIsHoldingClick(false)
+                        mouse.clearButtonHoldCount()
                         this.clickStartButton()
                     } else { 
-                        nHoldChecks++;
+                        mouse.incrementButtonHoldCount()
                     }
                 } else {
                     mouse.setIsHoldingClick(false)
+                    mouse.clearButtonHoldCount()
                     clearInterval(interval)
                 }
             }, 200)
         }
-
-
     }
 
     uiGame() {
@@ -103,8 +101,6 @@ class StateMachine {
         textSize(48)
         text('Game Over', 170, 90)
 
-        points = 10
-
         let winningUser = '';
         let crownYPos;
 
@@ -131,51 +127,56 @@ class StateMachine {
         image(homeIcon, 150, 290 - 34, 100, 100)
         strokeWeight(0)
 
-
-        if(this.isMouseClickingReplayBtn(mouse)) {
+        // Replay click listener
+        if(this.isMouseClickingReplayBtn(mouse) && mouse.getButtonHoldCount() == 0) {
             mouse.setIsHoldingClick(true)
-            let nHoldReplayChecks = 0;
+            mouse.incrementButtonHoldCount()
 
             let interval = setInterval(() => {
                 if(this.isMouseClickingReplayBtn(mouse)) {
                     mouse.setIsHoldingClick(true)
                     
-                    if(nHoldReplayChecks === 15) {
+                    if(mouse.getButtonHoldCount() === 15) {
                         clearInterval(interval)
                         mouse.setIsHoldingClick(false)
+                        mouse.clearButtonHoldCount()
                         this.clickReplayButton()
                     } else { 
-                        nHoldReplayChecks++;
+                        mouse.incrementButtonHoldCount()
                     }
                 } else {
                     mouse.setIsHoldingClick(false)
+                    mouse.clearButtonHoldCount()
                     clearInterval(interval)
                 }
             }, 200)
         }
 
-
-        if(this.isMouseClickingHomeBtn(mouse)) {
+        // Home button click listener
+        if(this.isMouseClickingHomeBtn(mouse) && mouse.getButtonHoldCount() == 0) {
             mouse.setIsHoldingClick(true)
-            let nHoldHomeChecks = 0;
+            mouse.incrementButtonHoldCount()
 
             let interval = setInterval(() => {
                 if(this.isMouseClickingHomeBtn(mouse)) {
                     mouse.setIsHoldingClick(true)
                     
-                    if(nHoldHomeChecks === 15) {
+                    if(mouse.getButtonHoldCount() === 15) {
                         clearInterval(interval)
                         mouse.setIsHoldingClick(false)
+                        mouse.clearButtonHoldCount()
                         this.clickHomeButton()
                     } else { 
-                        nHoldHomeChecks++;
+                        mouse.incrementButtonHoldCount()
                     }
                 } else {
                     mouse.setIsHoldingClick(false)
+                    mouse.clearButtonHoldCount()
                     clearInterval(interval)
                 }
             }, 200)
         }
+
     }
 
     clickStartButton() {
@@ -208,4 +209,5 @@ class StateMachine {
         if(pointsBot == 10 || points == 10)
             this.currentState = states.GAMEOVER;
     }
+
 }

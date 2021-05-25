@@ -50,7 +50,6 @@ class Ball {
 
     reverseXDir = () => {
         this.xDir *= -1;
-        console.log(this.xDir)
     }
 
     reverseYDir = () => {

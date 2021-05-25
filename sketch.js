@@ -31,6 +31,7 @@ function draw() {
     stateMachine.displayUI()
 
     mouse.paint();
+    mouse.drawButtonPressBar()
 
 
 }

@@ -5,7 +5,15 @@ class Mouse {
         this.y = 0;
         this.l = 10;
         this.isHoldingClick = false;
+        this.buttonHoldCount = 0;
+        this.buttonHoldBarSizePercent = 0;
     }
+
+    incrementButtonHoldCount() { this.buttonHoldCount++; }
+    clearButtonHoldCount() { this.buttonHoldCount = 0; }
+    getButtonHoldCount() { return this.buttonHoldCount; }
+
+    setButtonHoldBarSizePercent(percent) { this.buttonHoldBarSizePercent = percent; }
 
     newPos(x, y) {
         const c1 = Math.abs(x - this.x)
@@ -15,17 +23,7 @@ class Mouse {
         if(dist > 10) {
             this.x = x;
             this.y = y;
-        } 
-        // else {
-        //     // const corner = { x: this.x, y: y }
-        //     // const midCoord = {
-        //     //     x: corner.x + Math.abs(x - corner.x) / 4,
-        //     //     y: corner.y + Math.abs(corner.y - this.y) / 4
-        //     // }
-
-        //     // this.x = midCoord.x
-        //     // this.y = midCoord.y
-        // }
+        }
 
     }
 
@@ -39,4 +37,12 @@ class Mouse {
     getY() { return this.y; }
 
     setIsHoldingClick(val) {this.isHoldingClick = val; }
+
+    drawButtonPressBar() {
+        let barPercentage = this.buttonHoldCount * 200 * 100 / 3000
+        
+        let size = 596 * barPercentage / 100
+        fill(255)
+        rect(2, 478, size, 20)
+    }
 }
