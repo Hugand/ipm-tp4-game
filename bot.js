@@ -22,35 +22,34 @@ class Bot {
         if(ball.getY() >= this.y && ball.getY() <= this.y + this.h
         && ball.getX() + ball.getR() >= this.x && ball.getX() + ball.getR() <= this.x + this.w) {
             ball.xDirToLeft();
+            
+            if(Math.random() < 0.35)
+                ball.reverseYDir();
         }
     }
 
     setRandomSpeed = () => {
-        this.speed = Math.floor(Math.random() * 15) + 8
+        this.speed = Math.floor(Math.random() * 10) + 5
     }
 
     activateMovement = () => {
-        if(ball.getX() > 300 && this.speed == 0) {
+        if(ball.getX() > 500) {
             this.setRandomSpeed()
 
-            if(ball.getY() < 250)
+            if(ball.getY() < this.y + this.h/2)
                 this.speed *= -1;
-        } else
+            
+        } else if(ball.getX() <= 300)
             this.speed = 0;
     }
 
-    move = (ball) => {
-
-        if(this.y + this.h > 500)
+    move = () => {
+        if(this.y + this.speed + this.h > 500)
             this.y = 500 - this.h;
-        else if(this.y < 0)
+
+        if(this.y + this.speed < 0)
             this.y = 0;
-        else {
-            if(ball.getY >= this.y + 20 && ball.getY() <= this.y + this.h - 20)
-                this.y = ball.getY() - this.h/2;
 
-            this.y += this.speed;
-        }
-
+        this.y += this.speed;
     }
 }

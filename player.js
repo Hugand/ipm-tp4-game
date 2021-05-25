@@ -20,6 +20,10 @@ class Player {
         if(ball.getY() >= this.y && ball.getY() <= this.y + this.h
         && ball.getX() - ball.getR() <= this.x + this.w && ball.getX() - ball.getR() >= this.x) {
             ball.xDirToRight();
+
+            if(Math.random() < 0.35)
+                ball.reverseYDir();
+
             return true
         }
 

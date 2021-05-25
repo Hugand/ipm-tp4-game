@@ -5,7 +5,7 @@ function startVideo(stateMachine) {
     { video: {} },
     stream => {
         video.srcObject = stream
-        // stateMachine.finishLoadingApi()
+        stateMachine.finishLoadingApi()
     },
     err => console.error(err)
   )

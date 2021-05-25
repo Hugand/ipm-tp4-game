@@ -11,7 +11,7 @@ const playerType = {
 }
 
 class StateMachine {
-    currentState = states.GAME
+    currentState = states.LOADING
     buttonHold = 0;
 
     displayUI() {
@@ -34,7 +34,7 @@ class StateMachine {
     uiLoading() {
         fill(255)
         textSize(34)
-        text('Loading api...', 220, 260);
+        text('Loading api...', 270, 260);
     }
 
     uiMenu() {
@@ -122,11 +122,9 @@ class StateMachine {
         let winningUser = '';
         let crownYPos;
 
-        points = 10
-
-        if(pointsBot == 10) {
+        if(pointsBot == 5) {
             crownYPos = 180 - 24
-        } else if(points == 10) {
+        } else if(points == 5) {
             crownYPos = 140 - 24
         }
 
@@ -226,7 +224,7 @@ class StateMachine {
     }
 
     handleWin() {
-        if(pointsBot == 10 || points == 10)
+        if(pointsBot == 5 || points == 5)
             this.currentState = states.GAMEOVER;
     }
 
