@@ -77,7 +77,7 @@ class StateMachine {
         bot.paint()
         ball.paint();
 
-        player.setY(mouse.getY())
+        player.setY(mouse.getY() - player.getH()/2)
 
         player.collideWithBall(ball)
         bot.collideWithBall(ball)
@@ -101,9 +101,6 @@ class StateMachine {
         textSize(48)
         text('Game Over', 170, 130)
 
-        points = 10
-        // pointsBot = 10
-
         let winningUser = '';
         let crownYPos;
 
@@ -123,14 +120,11 @@ class StateMachine {
 
         image(crownIcon, 60, crownYPos, 34, 28)
 
-
         stroke(255)
         strokeWeight(4)
         fill(42)
         rect(383, 240, 136, 136)
         image(replayIcon, 400, 290 - 34, 100, 100)
-
-
 
         if(this.isMouseClickingReplayBtn(mouse)) {
             mouse.setIsHoldingClick(true)

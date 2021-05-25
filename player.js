@@ -27,6 +27,8 @@ class Player {
         return false
     }
 
+    getH() { return this.h; }
+
     reset = (x, y) => {
         this.x = x;
         this.y = y;

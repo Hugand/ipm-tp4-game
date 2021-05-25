@@ -16,6 +16,7 @@ function startVideo() {
 }
 
 function initFaceRecog(mouse) {
+    console.log("HELLOs")
 
     video.addEventListener('play', () => {
         const canvas = faceapi.createCanvasFromMedia(video)
@@ -23,12 +24,12 @@ function initFaceRecog(mouse) {
         const displaySize = { width: video.width, height: video.height }
         faceapi.matchDimensions(canvas, displaySize)
         setInterval(async () => {
-            const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
-            canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-        
-            if(resizedDetections !== undefined) {
-                const {x, y} = mapCoords(resizedDetections.landmarks._positions[33], displaySize)
+            // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+            console.log("HELLOs")
+            if(resizedDetections[0] !== undefined) {
+                const {x, y} = mapCoords(resizedDetections[0].landmarks._positions[33], displaySize)
                 // player.setY(mapCoords())
                 mouse.newPos(x, y)
                 // player.setY(mapCoords(resizedDetections.landmarks._positions[33]._y))
