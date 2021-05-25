@@ -29,8 +29,11 @@ class Mouse {
 
     paint() {
         // fill(200, 30, 30)
+        stroke(255)
+        strokeWeight(1)
         fill(250, 20, 20)
         ellipse(this.x, this.y, this.l)
+        strokeWeight(0)
     }
 
     getX() { return this.x; }

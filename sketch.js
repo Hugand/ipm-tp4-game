@@ -14,7 +14,7 @@ let playIcon;
 
 function setup() {
     createCanvas(600, 500);
-    initFaceRecog(mouse)
+    initFaceRecog(mouse, stateMachine)
     points = 0;
     frameRate(60)
 

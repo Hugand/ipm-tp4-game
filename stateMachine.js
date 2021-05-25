@@ -1,4 +1,5 @@
 const states = {
+    LOADING: 'loading',
     MENU: 'menu',
     GAME: 'game',
     GAMEOVER: 'gameover'
@@ -10,11 +11,14 @@ const playerType = {
 }
 
 class StateMachine {
-    currentState = states.GAMEOVER
+    currentState = states.LOADING
     buttonHold = 0;
 
     displayUI() {
         switch(this.currentState) {
+            case states.LOADING:
+                this.uiLoading();
+                break;
             case states.MENU:
                 this.uiMenu();
                 break;
@@ -25,6 +29,12 @@ class StateMachine {
                 this.uiGameOver();
                 break;
         }
+    }
+
+    uiLoading() {
+        fill(255)
+        textSize(34)
+        text('Loading api...', 220, 260);
     }
 
     uiMenu() {
@@ -208,6 +218,10 @@ class StateMachine {
     handleWin() {
         if(pointsBot == 10 || points == 10)
             this.currentState = states.GAMEOVER;
+    }
+
+    finishLoadingApi() {
+        this.currentState = states.MENU;
     }
 
 }

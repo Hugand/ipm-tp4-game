@@ -1,26 +1,31 @@
-const video = document.getElementById('video')
 
-Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
-//   faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
-//   faceapi.nets.faceExpressionNet.loadFromUri('./models')
-]).then(startVideo)
 
-function startVideo() {
+function startVideo(stateMachine) {
   navigator.getUserMedia(
     { video: {} },
-    stream => video.srcObject = stream,
+    stream => {
+        video.srcObject = stream
+        stateMachine.finishLoadingApi()
+    },
     err => console.error(err)
   )
 }
 
-function initFaceRecog(mouse) {
+function initFaceRecog(mouse, stateMachine) {
+    const video = document.getElementById('video')
+
+    Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
+        faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
+      //   faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
+      //   faceapi.nets.faceExpressionNet.loadFromUri('./models')
+    ]).then(() => startVideo(stateMachine))
+
     video.addEventListener('play', () => {
-        const canvas = faceapi.createCanvasFromMedia(video)
-        document.body.append(canvas)
+        // const canvas = faceapi.createCanvasFromMedia(video)
+        // document.body.append(canvas)
         const displaySize = { width: video.width, height: video.height }
-        faceapi.matchDimensions(canvas, displaySize)
+        // faceapi.matchDimensions(canvas, displaySize)
         setInterval(async () => {
             const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
@@ -30,7 +35,6 @@ function initFaceRecog(mouse) {
                 const {x, y} = mapCoords(resizedDetections[0].landmarks._positions[33], displaySize)
                 mouse.newPos(x, y)
                 // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-
             }
         }, 20)
     })
