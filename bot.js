@@ -21,9 +21,8 @@ class Bot {
     collideWithBall = (ball) => {
         if(ball.getY() >= this.y && ball.getY() <= this.y + this.h
         && ball.getX() + ball.getR() >= this.x && ball.getX() + ball.getR() <= this.x + this.w) {
-                console.log("collided")
-                ball.xDirToLeft();
-            }
+            ball.xDirToLeft();
+        }
     }
 
     setRandomSpeed = () => {

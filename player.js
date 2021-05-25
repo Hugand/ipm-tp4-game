@@ -19,10 +19,9 @@ class Player {
     collideWithBall = (ball) => {
         if(ball.getY() >= this.y && ball.getY() <= this.y + this.h
         && ball.getX() - ball.getR() <= this.x + this.w && ball.getX() - ball.getR() >= this.x) {
-                console.log("collided")
-                ball.xDirToRight();
-                return true
-            }
+            ball.xDirToRight();
+            return true
+        }
 
         return false
     }

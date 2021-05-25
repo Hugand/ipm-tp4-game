@@ -16,8 +16,6 @@ function startVideo() {
 }
 
 function initFaceRecog(mouse) {
-    console.log("HELLOs")
-
     video.addEventListener('play', () => {
         const canvas = faceapi.createCanvasFromMedia(video)
         document.body.append(canvas)
@@ -27,13 +25,10 @@ function initFaceRecog(mouse) {
             const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
             // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-            console.log("HELLOs")
             if(resizedDetections[0] !== undefined) {
+                // Index 33 is the tip of the nose
                 const {x, y} = mapCoords(resizedDetections[0].landmarks._positions[33], displaySize)
-                // player.setY(mapCoords())
                 mouse.newPos(x, y)
-                // player.setY(mapCoords(resizedDetections.landmarks._positions[33]._y))
-                // resizedDetections.landmarks._positions = resizedDetections.landmarks._positions.slice(30, 37)
                 // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
 
             }
