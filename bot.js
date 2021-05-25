@@ -1,7 +1,7 @@
 
 class Bot {
     h = 100;
-    w = 10;
+    w = 14;
     speed = 0;
 
     constructor(x, y) {
@@ -20,14 +20,14 @@ class Bot {
 
     collideWithBall = (ball) => {
         if(ball.getY() >= this.y && ball.getY() <= this.y + this.h
-            && ball.getX() + ball.getR() >= this.x + this.w/2) {
+        && ball.getX() + ball.getR() >= this.x && ball.getX() + ball.getR() <= this.x + this.w) {
                 console.log("collided")
                 ball.xDirToLeft();
             }
     }
 
     setRandomSpeed = () => {
-        this.speed = Math.floor(Math.random() * 10) + 5
+        this.speed = Math.floor(Math.random() * 15) + 8
     }
 
     activateMovement = () => {

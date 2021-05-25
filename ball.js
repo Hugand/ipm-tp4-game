@@ -7,13 +7,13 @@ class Ball {
     // xDir
     // yDir
     constructor() {
-        if(Math.floor(Math.random()) == 1)
+        if(Math.random() > 0.5)
             this.xDir = this.speed
         else
             this.xDir = -this.speed
 
 
-        if(Math.floor(Math.random()) == 1)
+        if(Math.random() > 0.5)
             this.yDir = this.speed
         else
             this.yDir = -this.speed
@@ -58,10 +58,10 @@ class Ball {
     }
 
     xDirToRight = () => {
-        this.xDir = this.speed;
+        this.xDir = this.speed + Math.random() * 5;
     }
 
     xDirToLeft = () => {
-        this.xDir = -this.speed;
+        this.xDir = -this.speed - Math.random() * 3;
     }
 }

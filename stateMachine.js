@@ -12,7 +12,7 @@ const playerType = {
 
 
 class StateMachine {
-    currentState = states.GAMEOVER
+    currentState = states.MENU
     buttonHold = 0;
 
     displayUI() {

@@ -1,7 +1,7 @@
 
 class Player {
     h = 100;
-    w = 10;
+    w = 14;
 
     constructor(x, y) {
         this.reset(x, y)
@@ -18,7 +18,7 @@ class Player {
 
     collideWithBall = (ball) => {
         if(ball.getY() >= this.y && ball.getY() <= this.y + this.h
-            && ball.getX() - ball.getR() <= this.x + this.w/2) {
+        && ball.getX() - ball.getR() <= this.x + this.w && ball.getX() - ball.getR() >= this.x) {
                 console.log("collided")
                 ball.xDirToRight();
                 return true
